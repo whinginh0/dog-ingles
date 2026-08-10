@@ -360,19 +360,22 @@ img.responsive-img {
 }
 
 .hero-mockup-wrapper {
-  margin: 22px auto 26px auto;
+  margin: 18px auto 22px auto;
   position: relative;
-  border-radius: var(--border-radius-md);
-  padding: 6px;
-  background: linear-gradient(135deg, rgba(62, 160, 220, 0.25) 0%, rgba(19, 105, 190, 0.15) 100%);
-  border: 1px solid var(--blue-border);
-  box-shadow: 0 10px 30px rgba(0, 39, 84, 0.12);
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  text-align: center;
 }
 
 .hero-mockup-img {
   width: 100%;
-  border-radius: var(--border-radius-sm);
+  max-width: 440px;
+  margin: 0 auto;
   display: block;
+  filter: drop-shadow(0 12px 28px rgba(0, 39, 84, 0.18));
+  cursor: zoom-in;
 }
 
 .hero-cta-btn {
@@ -1358,10 +1361,17 @@ img.responsive-img {
 }
 
 .warranty-badge-img {
-  width: 110px;
+  width: 240px;
+  max-width: 80%;
   height: auto;
-  margin: 0 auto 16px auto;
+  margin: 0 auto 20px auto;
   display: block;
+  filter: drop-shadow(0 12px 28px rgba(0, 39, 84, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.warranty-badge-img:hover {
+  transform: scale(1.04);
 }
 
 .warranty-subtitle {

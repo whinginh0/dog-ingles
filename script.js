@@ -215,47 +215,18 @@ const initPage = () => {
 
     // --- FAQ ACCORDION ---
     const setupFaqAccordion = () => {
-      const toggleFaqItem = (trigger) => {
-        const item = trigger.closest(".faq-item");
-        if (!item) return;
-
-        const isCurrentlyOpen = item.classList.contains("active");
-
-        // Close all items
-        document.querySelectorAll(".faq-item").forEach(otherItem => {
-          otherItem.classList.remove("active");
-          const otherTrigger = otherItem.querySelector(".faq-trigger");
-          if (otherTrigger) {
-            otherTrigger.setAttribute("aria-expanded", "false");
+      const allFaqItems = document.querySelectorAll(".faq-item");
+      allFaqItems.forEach((detail) => {
+        detail.addEventListener("toggle", () => {
+          if (detail.open) {
+            allFaqItems.forEach((other) => {
+              if (other !== detail && other.open) {
+                other.removeAttribute("open");
+              }
+            });
           }
-        });
-
-        // If it was not open, open it
-        if (!isCurrentlyOpen) {
-          item.classList.add("active");
-          trigger.setAttribute("aria-expanded", "true");
-        }
-      };
-
-      // Direct listeners on buttons
-      document.querySelectorAll(".faq-trigger").forEach(trigger => {
-        trigger.addEventListener("click", (e) => {
-          e.preventDefault();
-          toggleFaqItem(trigger);
         });
       });
-
-      // Event delegation backup on container
-      const faqContainer = document.querySelector(".faq-container");
-      if (faqContainer) {
-        faqContainer.addEventListener("click", (e) => {
-          const trigger = e.target.closest(".faq-trigger");
-          if (trigger) {
-            e.preventDefault();
-            toggleFaqItem(trigger);
-          }
-        });
-      }
     };
 
     setupFaqAccordion();

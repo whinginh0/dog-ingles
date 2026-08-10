@@ -1316,6 +1316,7 @@ img.responsive-img {
   transition: var(--transition);
 }
 
+.faq-item[open],
 .faq-item.active {
   border-color: var(--blue-primary);
   background-color: #FFFFFF;
@@ -1337,6 +1338,14 @@ img.responsive-img {
   color: var(--blue-dark);
   cursor: pointer;
   gap: 12px;
+  list-style: none;
+  user-select: none;
+}
+
+.faq-trigger::-webkit-details-marker,
+.faq-trigger::marker {
+  display: none;
+  content: "";
 }
 
 .faq-icon {
@@ -1347,26 +1356,17 @@ img.responsive-img {
   line-height: 1;
   display: inline-block;
   user-select: none;
+  flex-shrink: 0;
 }
 
+.faq-item[open] .faq-icon,
 .faq-item.active .faq-icon {
   transform: rotate(45deg);
   color: var(--blue-dark);
 }
 
 .faq-content {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, visibility 0.35s ease;
-}
-
-.faq-item.active .faq-content {
-  max-height: 800px;
-  opacity: 1;
-  visibility: visible;
-  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+  display: block;
 }
 
 .faq-content-inner {

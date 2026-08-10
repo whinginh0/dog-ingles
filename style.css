@@ -568,16 +568,16 @@ img.responsive-img {
 
 .marquee-track {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   width: max-content;
 }
 
 .marquee-to-right {
-  animation: scrollRight 38s linear infinite;
+  animation: scrollRight 52s linear infinite;
 }
 
 .marquee-to-left {
-  animation: scrollLeft 38s linear infinite;
+  animation: scrollLeft 52s linear infinite;
 }
 
 @keyframes scrollRight {
@@ -591,12 +591,12 @@ img.responsive-img {
 }
 
 .carousel-card-img {
-  width: 360px;
-  height: 240px;
+  width: 450px;
+  height: 305px;
   object-fit: cover;
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-lg);
   border: 2px solid var(--blue-border);
-  box-shadow: 0 6px 20px rgba(0, 39, 84, 0.1);
+  box-shadow: 0 8px 28px rgba(0, 39, 84, 0.14);
   flex-shrink: 0;
   background-color: #EAF3FC;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -604,13 +604,13 @@ img.responsive-img {
 
 .carousel-card-img:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 10px 28px rgba(0, 39, 84, 0.16);
+  box-shadow: 0 14px 34px rgba(0, 39, 84, 0.2);
 }
 
 @media (max-width: 480px) {
   .carousel-card-img {
-    width: 290px;
-    height: 195px;
+    width: 360px;
+    height: 245px;
   }
 }
 

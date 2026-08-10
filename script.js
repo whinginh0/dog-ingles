@@ -338,4 +338,8 @@ const initPage = () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", initPage);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initPage);
+} else {
+  initPage();
+}

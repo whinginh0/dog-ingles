@@ -749,16 +749,26 @@ img.responsive-img {
 }
 
 .bonus-image-wrapper {
-  margin-bottom: 14px;
-  border-radius: var(--border-radius-sm);
-  overflow: hidden;
-  border: 1px solid var(--blue-border);
+  margin: 12px auto 16px auto;
+  background: transparent;
+  border: none;
+  overflow: visible;
+  text-align: center;
 }
 
 .bonus-image-wrapper img {
   width: 100%;
+  max-width: 380px;
   height: auto;
+  margin: 0 auto;
   display: block;
+  filter: drop-shadow(0 10px 24px rgba(0, 39, 84, 0.16));
+  cursor: zoom-in;
+  transition: transform 0.25s ease;
+}
+
+.bonus-image-wrapper img:hover {
+  transform: scale(1.03);
 }
 
 .bonus-title {
@@ -1146,6 +1156,26 @@ img.responsive-img {
   color: #A9CBEB;
   font-weight: 600;
   margin-left: 6px;
+}
+
+.plan-cover-preview {
+  margin: 18px -20px 22px -20px;
+  width: calc(100% + 40px);
+  text-align: center;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.plan-cover-img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: zoom-in;
 }
 
 .plan-card-featured .plan-features {

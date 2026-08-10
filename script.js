@@ -13,7 +13,7 @@ const initPage = () => {
       headlinePrincipal: "100+ Illustrated <br><span class='hl-blue'>Dog Grooming Techniques</span>",
       subheadlineDeApoio: "Ready-to-reference visual techniques to help you understand and review essential dog grooming procedures through clear illustrations and easy-to-follow explanations.",
       nomeMaterialPrincipal: "100+ Illustrated Dog Grooming Techniques",
-      mockupPrincipal: "https://i.ibb.co/KzzSfzfM/capa-saude-capilar-site-aproximada-sem-tarja.png",
+      mockupPrincipal: "https://i.ibb.co/LDykxLWH/image-capa-dog.png",
       capaBonus1: "https://i.ibb.co/LhhDT3VM/image.png",
       capaBonus2: "https://i.ibb.co/S4X5XbK4/image.png",
       capaBonus3: "https://i.ibb.co/G48G4wYH/image.png",
@@ -277,7 +277,7 @@ const initPage = () => {
       };
 
       // Click on any carousel or preview image
-      document.querySelectorAll(".carousel-card-img, .hero-mockup-img, .bonus-image-wrapper img").forEach(img => {
+      document.querySelectorAll(".carousel-card-img, .hero-mockup-img, .plan-cover-img, .bonus-image-wrapper img").forEach(img => {
         img.addEventListener("click", (e) => {
           e.stopPropagation();
           const fullSrc = img.getAttribute("src");

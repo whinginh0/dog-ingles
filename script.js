@@ -250,6 +250,66 @@ const initPage = () => {
 
     fadeElements.forEach(el => fadeObserver.observe(el));
 
+    // --- FULLSCREEN IMAGE LIGHTBOX MODAL ---
+    const setupLightbox = () => {
+      const lightbox = document.getElementById("image-lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeBtn = document.getElementById("close-lightbox-btn");
+
+      if (!lightbox || !lightboxImg) return;
+
+      const openLightbox = (src, alt) => {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || "Dog Grooming Preview";
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        if (closeBtn) setTimeout(() => closeBtn.focus(), 80);
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        setTimeout(() => {
+          lightboxImg.src = "";
+        }, 250);
+      };
+
+      // Click on any carousel or preview image
+      document.querySelectorAll(".carousel-card-img, .hero-mockup-img, .bonus-image-wrapper img").forEach(img => {
+        img.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const fullSrc = img.getAttribute("src");
+          const altText = img.getAttribute("alt");
+          if (fullSrc) {
+            openLightbox(fullSrc, altText);
+          }
+        });
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          closeLightbox();
+        });
+      }
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox || e.target.id === "lightbox-container") {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("active")) {
+          closeLightbox();
+        }
+      });
+    };
+
+    setupLightbox();
+
     // --- DRAG / TOUCH FOR CAROUSELS ---
     const setupMarqueeDrag = (container) => {
       const track = container.querySelector(".marquee-track");
@@ -257,9 +317,11 @@ const initPage = () => {
       let isDown = false;
       let startX;
       let initialTransform = 0;
+      let hasDragged = false;
 
       container.addEventListener("mousedown", (e) => {
         isDown = true;
+        hasDragged = false;
         track.style.animationPlayState = "paused";
         startX = e.pageX;
 
@@ -285,10 +347,13 @@ const initPage = () => {
 
       container.addEventListener("mousemove", (e) => {
         if (!isDown) return;
-        e.preventDefault();
         const x = e.pageX;
         const walk = (x - startX);
-        track.style.transform = `translate3d(${initialTransform + walk}px, 0, 0)`;
+        if (Math.abs(walk) > 6) {
+          hasDragged = true;
+          e.preventDefault();
+          track.style.transform = `translate3d(${initialTransform + walk}px, 0, 0)`;
+        }
       });
     };
 

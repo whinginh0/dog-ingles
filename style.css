@@ -540,8 +540,8 @@ img.responsive-img {
   width: 100%;
   overflow: hidden;
   position: relative;
-  padding: 8px 0;
-  margin-bottom: 12px;
+  padding: 16px 0;
+  margin-bottom: 20px;
   cursor: grab;
 }
 
@@ -551,7 +551,7 @@ img.responsive-img {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 35px;
+  width: 40px;
   z-index: 2;
   pointer-events: none;
 }
@@ -568,16 +568,16 @@ img.responsive-img {
 
 .marquee-track {
   display: flex;
-  gap: 18px;
+  gap: 24px;
   width: max-content;
 }
 
 .marquee-to-right {
-  animation: scrollRight 52s linear infinite;
+  animation: scrollRight 65s linear infinite;
 }
 
 .marquee-to-left {
-  animation: scrollLeft 52s linear infinite;
+  animation: scrollLeft 65s linear infinite;
 }
 
 @keyframes scrollRight {
@@ -591,26 +591,26 @@ img.responsive-img {
 }
 
 .carousel-card-img {
-  width: 450px;
-  height: 305px;
+  width: 650px;
+  height: 440px;
   object-fit: cover;
   border-radius: var(--border-radius-lg);
-  border: 2px solid var(--blue-border);
-  box-shadow: 0 8px 28px rgba(0, 39, 84, 0.14);
+  border: 2.5px solid var(--blue-border);
+  box-shadow: 0 10px 32px rgba(0, 39, 84, 0.16);
   flex-shrink: 0;
   background-color: #EAF3FC;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .carousel-card-img:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 14px 34px rgba(0, 39, 84, 0.2);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 39, 84, 0.24);
 }
 
 @media (max-width: 480px) {
   .carousel-card-img {
-    width: 360px;
-    height: 245px;
+    width: 440px;
+    height: 300px;
   }
 }
 

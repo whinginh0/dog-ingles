@@ -1159,11 +1159,12 @@ img.responsive-img {
 }
 
 .plan-cover-preview {
-  margin: 18px -20px 22px -20px;
-  width: calc(100% + 40px);
+  margin: 14px auto 18px auto;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 4px;
   text-align: center;
   background: transparent;
-  padding: 0;
   border: none;
 }
 
@@ -1171,10 +1172,12 @@ img.responsive-img {
   width: 100%;
   max-width: 100%;
   display: block;
+  margin: 0 auto;
+  border-radius: 12px;
   background: transparent;
   border: none;
-  border-radius: 0;
   box-shadow: none;
+  filter: drop-shadow(0 8px 22px rgba(0, 10, 30, 0.45));
   cursor: zoom-in;
 }
 

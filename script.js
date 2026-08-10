@@ -231,44 +231,6 @@ const initPage = () => {
 
     setupFaqAccordion();
 
-    // --- BASIC PLAN UPGRADE MODAL POPUP ---
-    const modal = document.getElementById("promo-modal");
-    const openModalBtn = document.getElementById("basic-plan-trigger");
-    const closeModalX = document.getElementById("close-modal-btn");
-    const declinePromoLink = document.getElementById("decline-promo-link");
-
-    const openModal = () => {
-      if (!modal) return;
-      modal.classList.add("active");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      if (closeModalX) setTimeout(() => closeModalX.focus(), 100);
-    };
-
-    const closeModal = () => {
-      if (!modal) return;
-      modal.classList.remove("active");
-      modal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      if (openModalBtn) openModalBtn.focus();
-    };
-
-    if (openModalBtn) openModalBtn.addEventListener("click", openModal);
-    if (closeModalX) closeModalX.addEventListener("click", closeModal);
-    if (declinePromoLink) declinePromoLink.addEventListener("click", closeModal);
-
-    if (modal) {
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) closeModal();
-      });
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal && modal.classList.contains("active")) {
-        closeModal();
-      }
-    });
-
     // --- AUTOMATIC FOOTER COPYRIGHT YEAR ---
     const currentYearSpan = document.getElementById("current-year");
     if (currentYearSpan) {

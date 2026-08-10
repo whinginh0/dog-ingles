@@ -1343,8 +1343,10 @@ img.responsive-img {
   font-size: 1.3rem;
   font-weight: 800;
   color: var(--blue-primary);
-  transition: transform 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
   line-height: 1;
+  display: inline-block;
+  user-select: none;
 }
 
 .faq-item.active .faq-icon {
@@ -1355,12 +1357,16 @@ img.responsive-img {
 .faq-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, visibility 0.35s ease;
 }
 
 .faq-item.active .faq-content {
-  max-height: 500px;
-  transition: max-height 0.35s ease-in-out;
+  max-height: 800px;
+  opacity: 1;
+  visibility: visible;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
 }
 
 .faq-content-inner {

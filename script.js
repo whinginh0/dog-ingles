@@ -214,23 +214,51 @@ const initPage = () => {
     drawSvgPlaceholders();
 
     // --- FAQ ACCORDION ---
-    const faqTriggers = document.querySelectorAll(".faq-trigger");
-    faqTriggers.forEach(trigger => {
-      trigger.addEventListener("click", () => {
+    const setupFaqAccordion = () => {
+      const toggleFaqItem = (trigger) => {
         const item = trigger.closest(".faq-item");
-        const isAlreadyActive = item.classList.contains("active");
+        if (!item) return;
 
-        document.querySelectorAll(".faq-item").forEach(other => {
-          other.classList.remove("active");
-          other.querySelector(".faq-trigger").setAttribute("aria-expanded", "false");
+        const isCurrentlyOpen = item.classList.contains("active");
+
+        // Close all items
+        document.querySelectorAll(".faq-item").forEach(otherItem => {
+          otherItem.classList.remove("active");
+          const otherTrigger = otherItem.querySelector(".faq-trigger");
+          if (otherTrigger) {
+            otherTrigger.setAttribute("aria-expanded", "false");
+          }
         });
 
-        if (!isAlreadyActive) {
+        // If it was not open, open it
+        if (!isCurrentlyOpen) {
           item.classList.add("active");
           trigger.setAttribute("aria-expanded", "true");
         }
+      };
+
+      // Direct listeners on buttons
+      document.querySelectorAll(".faq-trigger").forEach(trigger => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          toggleFaqItem(trigger);
+        });
       });
-    });
+
+      // Event delegation backup on container
+      const faqContainer = document.querySelector(".faq-container");
+      if (faqContainer) {
+        faqContainer.addEventListener("click", (e) => {
+          const trigger = e.target.closest(".faq-trigger");
+          if (trigger) {
+            e.preventDefault();
+            toggleFaqItem(trigger);
+          }
+        });
+      }
+    };
+
+    setupFaqAccordion();
 
     // --- BASIC PLAN UPGRADE MODAL POPUP ---
     const modal = document.getElementById("promo-modal");

@@ -307,7 +307,7 @@ const initPage = () => {
       };
 
       // Click on any carousel or preview image
-      document.querySelectorAll(".carousel-card-img, .hero-mockup-img, .plan-cover-img, .slider-card-img, .bonus-image-wrapper img").forEach(img => {
+      document.querySelectorAll(".carousel-card-img, .hero-mockup-img, .plan-cover-img, .slider-card-img, .audience-banner-img, .bonus-image-wrapper img").forEach(img => {
         img.addEventListener("click", (e) => {
           e.stopPropagation();
           const fullSrc = img.getAttribute("src");
@@ -485,11 +485,21 @@ const initPage = () => {
         "https://i.ibb.co/3mwB4KYv/Dog-Grooming-Page-075.jpg",
         "https://i.ibb.co/S4dRQL8J/Dog-Grooming-Page-081.jpg",
         "https://i.ibb.co/zVMqy9tC/Dog-Grooming-Page-092.jpg",
-        "https://i.ibb.co/BKv3Byfg/Dog-Grooming-Page-093.jpg",
+        "https://i.ibb.co/0yPJbHYL/image.png",
         "https://i.ibb.co/hxyDwySR/image.png",
         "https://i.ibb.co/7d5QT22V/image.png",
         "https://i.ibb.co/CsvNTFnV/image.png",
-        "https://i.ibb.co/cXvxW3dG/image.png"
+        "https://i.ibb.co/cXvxW3dG/image.png",
+        "https://i.ibb.co/rf5yHkcL/01-Bonus-3-Page-08.jpg",
+        "https://i.ibb.co/qMkq8ssG/02-Bonus-2-Page-09.jpg",
+        "https://i.ibb.co/1fn0b192/03-Bonus-1-Page-23.jpg",
+        "https://i.ibb.co/jvGbM8Fz/04-Bonus-1-Page-26.jpg",
+        "https://i.ibb.co/GyBtWLy/05-Bonus-2-Page-18.jpg",
+        "https://i.ibb.co/GzVfJSw/06-Bonus-3-Page-12.jpg",
+        "https://i.ibb.co/d0vWnr5F/07-Bonus-1-Page-09.jpg",
+        "https://i.ibb.co/2DvJz6d/08-Bonus-1-Page-16.jpg",
+        "https://i.ibb.co/xSVr4yGT/09-Bonus-3-Page-28.jpg",
+        "https://i.ibb.co/twJnWvY4/10-Bonus-2-Page-29.jpg"
       ];
 
       const runPreload = () => {

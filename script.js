@@ -359,6 +359,52 @@ const initPage = () => {
 
     document.querySelectorAll(".marquee-container").forEach(setupMarqueeDrag);
 
+    // --- BACKGROUND IMAGE PRELOADER FOR ULTRA FAST PERFORMANCE ---
+    const preloadImagesInBackground = () => {
+      const urls = [
+        "https://i.ibb.co/xqGvkk4X/Dog-Grooming-Page-001.jpg",
+        "https://i.ibb.co/MyHzgMzg/Dog-Grooming-Page-004.jpg",
+        "https://i.ibb.co/jkbT2961/Dog-Grooming-Page-006.jpg",
+        "https://i.ibb.co/KzyDJYhQ/Dog-Grooming-Page-018.jpg",
+        "https://i.ibb.co/FLmsV5Rd/Dog-Grooming-Page-019.jpg",
+        "https://i.ibb.co/qY7v2QG8/Dog-Grooming-Page-024.jpg",
+        "https://i.ibb.co/CsPnVYjM/Dog-Grooming-Page-027.jpg",
+        "https://i.ibb.co/yBpkdb85/Dog-Grooming-Page-029.jpg",
+        "https://i.ibb.co/qLYL20wf/Dog-Grooming-Page-037.jpg",
+        "https://i.ibb.co/TDjfFR8T/Dog-Grooming-Page-045.jpg",
+        "https://i.ibb.co/5gLt74q8/Dog-Grooming-Page-048.jpg",
+        "https://i.ibb.co/zTRbtH2f/Dog-Grooming-Page-052.jpg",
+        "https://i.ibb.co/fYyy1QC6/Dog-Grooming-Page-055.jpg",
+        "https://i.ibb.co/X6Vw8zZ/Dog-Grooming-Page-068.jpg",
+        "https://i.ibb.co/0VVDMvFk/Dog-Grooming-Page-069.jpg",
+        "https://i.ibb.co/h1Cf44QB/Dog-Grooming-Page-073.jpg",
+        "https://i.ibb.co/3mwB4KYv/Dog-Grooming-Page-075.jpg",
+        "https://i.ibb.co/S4dRQL8J/Dog-Grooming-Page-081.jpg",
+        "https://i.ibb.co/zVMqy9tC/Dog-Grooming-Page-092.jpg",
+        "https://i.ibb.co/BKv3Byfg/Dog-Grooming-Page-093.jpg",
+        "https://i.ibb.co/hxyDwySR/image.png",
+        "https://i.ibb.co/7d5QT22V/image.png",
+        "https://i.ibb.co/CsvNTFnV/image.png",
+        "https://i.ibb.co/cXvxW3dG/image.png"
+      ];
+
+      const runPreload = () => {
+        urls.forEach(src => {
+          const img = new Image();
+          img.decoding = "async";
+          img.src = src;
+        });
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(runPreload, { timeout: 1200 });
+      } else {
+        setTimeout(runPreload, 200);
+      }
+    };
+
+    preloadImagesInBackground();
+
   } catch (err) {
     console.error("Page initialization error:", err);
   }

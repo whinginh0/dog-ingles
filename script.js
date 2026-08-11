@@ -307,7 +307,7 @@ const initPage = () => {
       };
 
       // Click on any carousel or preview image
-      document.querySelectorAll(".carousel-card-img, .hero-mockup-img, .plan-cover-img, .bonus-image-wrapper img").forEach(img => {
+      document.querySelectorAll(".carousel-card-img, .hero-mockup-img, .plan-cover-img, .slider-card-img, .bonus-image-wrapper img").forEach(img => {
         img.addEventListener("click", (e) => {
           e.stopPropagation();
           const fullSrc = img.getAttribute("src");
@@ -339,6 +339,80 @@ const initPage = () => {
     };
 
     setupLightbox();
+
+    // --- INTERACTIVE BONUS PREVIEW SLIDER (10 HORIZONTAL CARDS) ---
+    const setupInteractiveBonusSlider = () => {
+      const slider = document.getElementById("bonus-slider");
+      const track = document.getElementById("bonus-slider-track");
+      const prevBtn = document.getElementById("slider-prev-btn");
+      const nextBtn = document.getElementById("slider-next-btn");
+      const dots = document.querySelectorAll("#bonus-slider-dots .slider-dot");
+      const cards = document.querySelectorAll("#bonus-slider-track .slider-card");
+
+      if (!slider || !track || cards.length === 0) return;
+
+      let currentIndex = 0;
+      const totalSlides = cards.length;
+
+      const updateSlider = (index) => {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        currentIndex = index;
+
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        dots.forEach((dot, i) => {
+          if (i === currentIndex) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      };
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          updateSlider(currentIndex - 1);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          updateSlider(currentIndex + 1);
+        });
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", (e) => {
+          e.preventDefault();
+          updateSlider(i);
+        });
+      });
+
+      // Touch swipe gestures
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      slider.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      slider.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) {
+            updateSlider(currentIndex + 1);
+          } else {
+            updateSlider(currentIndex - 1);
+          }
+        }
+      }, { passive: true });
+    };
+
+    setupInteractiveBonusSlider();
 
     // --- DRAG / TOUCH FOR CAROUSELS ---
     const setupMarqueeDrag = (container) => {

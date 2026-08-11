@@ -1083,6 +1083,85 @@ img.responsive-img {
   margin-top: 12px;
 }
 
+/* Upgrade Bridge / Callout between Plans */
+.plan-upgrade-callout {
+  background: linear-gradient(135deg, #EAF4FD 0%, #D8ECFC 100%);
+  border: 2px dashed #3EA0DC;
+  border-radius: var(--border-radius-md);
+  padding: 18px 16px 16px 16px;
+  text-align: center;
+  margin: 6px 0;
+  position: relative;
+  box-shadow: 0 4px 18px rgba(19, 105, 190, 0.12);
+  animation: pulseCallout 3s infinite ease-in-out;
+}
+
+@keyframes pulseCallout {
+  0%, 100% {
+    box-shadow: 0 4px 18px rgba(19, 105, 190, 0.12);
+  }
+  50% {
+    box-shadow: 0 8px 26px rgba(62, 160, 220, 0.28);
+  }
+}
+
+.upgrade-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, #1369BE 0%, #002754 100%);
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 39, 84, 0.2);
+}
+
+.upgrade-callout-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--blue-dark);
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.upgrade-callout-title strong {
+  color: var(--blue-primary);
+}
+
+.upgrade-callout-desc {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.upgrade-callout-desc strong {
+  color: var(--blue-dark);
+  font-weight: 700;
+}
+
+.upgrade-arrow-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--blue-primary);
+  background: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--blue-border);
+  box-shadow: 0 2px 6px rgba(0, 39, 84, 0.08);
+}
+
 /* Featured / Complete Plan */
 .plan-card-featured {
   background: linear-gradient(180deg, #002754 0%, #073166 100%);

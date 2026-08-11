@@ -164,25 +164,55 @@ const initPage = () => {
     // --- FORWARD UTM PARAMETERS TO CHECKOUT LINKS ---
     const passUtmParams = () => {
       try {
-        const currentQueryParams = window.location.search;
-        if (!currentQueryParams) return;
+        const updateAllCheckoutLinks = () => {
+          const currentQueryParams = window.location.search;
+          if (!currentQueryParams) return;
 
-        const urlParams = new URLSearchParams(currentQueryParams);
+          const urlParams = new URLSearchParams(currentQueryParams);
 
-        document.querySelectorAll("a").forEach(a => {
-          const href = a.getAttribute("href");
-          if (href && (href.startsWith("http://") || href.startsWith("https://"))) {
-            try {
-              const targetUrl = new URL(href);
-              urlParams.forEach((value, key) => {
-                targetUrl.searchParams.set(key, value);
-              });
-              a.setAttribute("href", targetUrl.toString());
-            } catch (err) {
-              console.warn("Error parsing URL: ", href, err);
+          document.querySelectorAll("a").forEach(a => {
+            const href = a.getAttribute("href");
+            if (href && (href.includes("pay.kiwify.com") || href.includes("kiwify") || href.startsWith("http://") || href.startsWith("https://"))) {
+              try {
+                const targetUrl = new URL(href);
+                urlParams.forEach((value, key) => {
+                  targetUrl.searchParams.set(key, value);
+                });
+                a.setAttribute("href", targetUrl.toString());
+              } catch (err) {
+                console.warn("Error parsing URL: ", href, err);
+              }
+            }
+          });
+        };
+
+        updateAllCheckoutLinks();
+
+        // Also dynamically inject UTMs at the moment the customer clicks any buy button
+        document.addEventListener("click", (e) => {
+          const anchor = e.target.closest("a");
+          if (!anchor) return;
+
+          let href = anchor.getAttribute("href");
+          if (!href) return;
+
+          if (href.includes("pay.kiwify.com") || href.includes("kiwify") || anchor.classList.contains("btn-verde") || anchor.classList.contains("btn-basic")) {
+            const currentQueryParams = window.location.search;
+            if (currentQueryParams) {
+              try {
+                const targetUrl = new URL(href, window.location.origin);
+                const urlParams = new URLSearchParams(currentQueryParams);
+                urlParams.forEach((value, key) => {
+                  targetUrl.searchParams.set(key, value);
+                });
+                anchor.setAttribute("href", targetUrl.toString());
+              } catch (err) {
+                console.warn("Dynamic checkout link update warning:", err);
+              }
             }
           }
-        });
+        }, true);
+
       } catch (e) {
         console.error("Error passing UTM parameters:", e);
       }
